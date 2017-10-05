@@ -2,7 +2,7 @@
 #define _GAYALGORITHM_H_
 
 #include <cstring> // for operation of memory
-#include "iterator.h"
+#include "gay_iterator.h"
 #include "gay_type_traits.h"
 
 namespace uvwxyz
@@ -21,27 +21,27 @@ namespace uvwxyz
         }
 
         template <class InputIterator>
-        typename gay_iterator_traits<InputIterator>::difference_type
+        typename __gay_iterator_traits<InputIterator>::difference_type
         __distance(InputIterator first, InputIterator last, gay_input_iterator_tag)
         {
-            typename gay_iterator_traits<InputIterator>::difference_type n = 0;
+            typename __gay_iterator_traits<InputIterator>::difference_type n = 0;
             while(first != last)
                 ++first, ++n;
             return n;
         }
 
         template <class InputIterator>
-        typename gay_iterator_traits<InputIterator>::difference_type
+        typename __gay_iterator_traits<InputIterator>::difference_type
         __distance(InputIterator first, InputIterator last, gay_random_access_iterator_tag)
         {
             return last - first;
         }
 
         template <class InputIterator>
-        typename gay_iterator_traits<InputIterator>::difference_type
+        typename __gay_iterator_traits<InputIterator>::difference_type
         distance(InputIterator first, InputIterator last)
         {
-            typedef typename gay_iterator_traits<InputIterator>::iterator_category category;
+            typedef typename __gay_iterator_traits<InputIterator>::iterator_category category;
             return __distance(first, last, category());
         }
 
@@ -82,7 +82,7 @@ namespace uvwxyz
         // copy for pod type
         template <class RandomAccessIterator, class OutputIterator>
         OutputIterator
-        __copy_aux_(RandomAccessIterator first, RandomAccessIterator last, OutputIterator result, __gay__true_type)
+        __copy_aux_(RandomAccessIterator first, RandomAccessIterator last, OutputIterator result, __gay_true_type)
         {
             auto dis = distance(first, last);
             memcpy(result, first, dis * sizeof(*first));
@@ -92,7 +92,7 @@ namespace uvwxyz
 
         template <class RandomAccessIterator, class OutputIterator>
         OutputIterator
-        __copy_aux_(RandomAccessIterator first, RandomAccessIterator last, OutputIterator result, __gayFalse_type)
+        __copy_aux_(RandomAccessIterator first, RandomAccessIterator last, OutputIterator result, __gay_false_type)
         {
             for(; first != last; ++result, ++first)
                 *result = *first;
@@ -128,7 +128,7 @@ namespace uvwxyz
         OutputIterator
         copy(InputIterator first, InputIterator last, OutputIterator result)
         {
-            typedef typename gay_iterator_traits<InputIterator>::iterator_category category;
+            typedef typename __gay_iterator_traits<InputIterator>::iterator_category category;
             // call __copy to handle
             return __copy(first, last, result, category());
         }

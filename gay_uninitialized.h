@@ -2,7 +2,7 @@
 #define _GAYUNINITIALIZED_H_
 
 #include <iostream>
-#include "iterator.h"
+#include "gay_iterator.h"
 #include "algorithm.h"
 #include "gay_construct.h"
 #include "gay_type_traits.h"
@@ -18,7 +18,7 @@ namespace uvwxyz
         template<class InputIterator, class ForwardIterator>
         ForwardIterator
         __uninitalized_copy_aux(InputIterator first, InputIterator last, ForwardIterator result,
-                              __gay__true_type)
+                              __gay_true_type)
         {
             return gay_stl::copy(first, last, result);
         }
@@ -26,7 +26,7 @@ namespace uvwxyz
         template <class InputIterator, class ForwardIterator>
         ForwardIterator
         __uninitalized_copy_aux(InputIterator first, InputIterator last, ForwardIterator result,
-                            __gayFalse_type)
+                            __gay_false_type)
         {
             ForwardIterator cur = result;
             for(; first != last; ++first, ++cur)
@@ -52,14 +52,14 @@ namespace uvwxyz
 
         template <class ForwardIterator, class Size, class T>
         inline ForwardIterator
-        __uninitialized_fill_n_aux(ForwardIterator first, Size n, const T& x, __gay__true_type)
+        __uninitialized_fill_n_aux(ForwardIterator first, Size n, const T& x, __gay_true_type)
         {
             return gay_stl::fill_n(first, n, x);
         }
 
         template <class ForwardIterator, class Size, class T>
         inline ForwardIterator
-        __uninitialized_fill_n_aux(ForwardIterator first, Size n, const T& x, __gayFalse_type)
+        __uninitialized_fill_n_aux(ForwardIterator first, Size n, const T& x, __gay_false_type)
         {
             T x_copy = x;
             ForwardIterator cur = first;
@@ -78,14 +78,14 @@ namespace uvwxyz
 
         template <class ForwardIterator, class T>
         inline void
-        __uninitialized_fill_aux(ForwardIterator first, ForwardIterator last, const T& x, __gay__true_type)
+        __uninitialized_fill_aux(ForwardIterator first, ForwardIterator last, const T& x, __gay_true_type)
         {
             gay_stl::fill(first, last, x);
         }
 
         template <class ForwardIterator, class T>
         inline void
-        __uninitialized_fill_aux(ForwardIterator first, ForwardIterator last, const T& x, __gayFalse_type)
+        __uninitialized_fill_aux(ForwardIterator first, ForwardIterator last, const T& x, __gay_false_type)
         {
             ForwardIterator cur = first;
             for(; cur != last; ++cur)

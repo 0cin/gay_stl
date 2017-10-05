@@ -2,7 +2,7 @@
 #define _GAYLIST_H_
 
 #include "memory.h"
-#include "iterator.h"
+#include "gay_iterator.h"
 #include "algorithm.h"
 #include "gay_construct.h"
 

@@ -20,10 +20,10 @@ namespace uvwxyz
         }
 
         template<class ForwardIterator>
-        inline void _destroy(ForwardIterator first, ForwardIterator last, __gay__true_type)  {   }
+        inline void _destroy(ForwardIterator first, ForwardIterator last, __gay_true_type)  {   }
 
         template<class ForwardIterator>
-        inline void _destroy(ForwardIterator first, ForwardIterator last, __gayFalse_type)
+        inline void _destroy(ForwardIterator first, ForwardIterator last, __gay_false_type)
         {
             for(; first != last; ++first)
                 destroy(&*first);

@@ -5,12 +5,12 @@
 #include "gay_uninitialized.h"
 #include "algorithm.h"
 #include "memory.h"
-#include "iterator.h"
+#include "gay_iterator.h"
 #include "gay_deque.h"
 #include "gay_vector.h"
 #include "gay_stack.h"
 #include "gay_queue.h"
-#include "list.h"
+#include "gay_list.h"
 #include <iterator>
 #include <algorithm>
 #include <vector>
@@ -225,6 +225,7 @@ int main()
     for(deque_iterator itr = m_deque.begin(); itr != m_deque.end(); ++itr)
         cout << *itr << " ";
     cout << endl;
+
 
     int* ip4 = (int*)malloc(10 * sizeof(int));
     for(int i = 0; i < 10; ++i)

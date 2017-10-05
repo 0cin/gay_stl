@@ -51,7 +51,7 @@ namespace uvwxyz
 
         // IteratorType is a kind of iterator that extends gay_iterator
         template<class IteratorType>
-        struct  gay_iterator_traits
+        struct  __gay_iterator_traits
         {
             typedef typename IteratorType::iterator_category    iterator_category;
             typedef typename IteratorType::value_type           value_type;
@@ -62,7 +62,7 @@ namespace uvwxyz
 
         // Specialization for random access iterators.
         template<class Type>
-        struct  gay_iterator_traits<Type*>
+        struct  __gay_iterator_traits<Type*>
         {
             typedef gay_random_access_iterator_tag   iterator_category;
             typedef Type                            value_type;
@@ -72,7 +72,7 @@ namespace uvwxyz
         };
 
         template<class Type>
-        struct  gay_iterator_traits<const Type*>
+        struct  __gay_iterator_traits<const Type*>
         {
             typedef gay_random_access_iterator_tag   iterator_category;
             typedef Type                            value_type;
@@ -83,15 +83,15 @@ namespace uvwxyz
 
         template <class Iterator>
         class gay_reverse_iterator : public gay_iterator <
-            typename gay_iterator_traits<Iterator>::iterator_category,
-            typename gay_iterator_traits<Iterator>::value_type,
-            typename gay_iterator_traits<Iterator>::difference_type,
-            typename gay_iterator_traits<Iterator>::pointer,
-            typename gay_iterator_traits<Iterator>::reference >
+            typename __gay_iterator_traits<Iterator>::iterator_category,
+            typename __gay_iterator_traits<Iterator>::value_type,
+            typename __gay_iterator_traits<Iterator>::difference_type,
+            typename __gay_iterator_traits<Iterator>::pointer,
+            typename __gay_iterator_traits<Iterator>::reference >
         {
         protected:
             Iterator current;
-            typedef gay_iterator_traits<Iterator> traits_type;
+            typedef __gay_iterator_traits<Iterator> traits_type;
 
         public:
             typedef Iterator iterator_type;
@@ -200,26 +200,26 @@ namespace uvwxyz
 
         // get the category of a iterator.
         template<class IteratorType>
-        inline typename gay_iterator_traits<IteratorType>::iterator_category
+        inline typename __gay_iterator_traits<IteratorType>::iterator_category
         gay_iterator_category(const IteratorType&)
         {
-            typedef typename gay_iterator_traits<IteratorType>::iterator_category category;
+            typedef typename __gay_iterator_traits<IteratorType>::iterator_category category;
             return category();
         }
 
         template<class IteratorType>
-        inline typename gay_iterator_traits<IteratorType>::value_type*
+        inline typename __gay_iterator_traits<IteratorType>::value_type*
         gay_iterator_value_type(const IteratorType&)
         {
-            typedef typename gay_iterator_traits<IteratorType>::value_type value;
+            typedef typename __gay_iterator_traits<IteratorType>::value_type value;
             return static_cast<value*>(nullptr);
         }
 
         template<class IteratorType>
-        inline typename gay_iterator_traits<IteratorType>::difference_type*
+        inline typename __gay_iterator_traits<IteratorType>::difference_type*
         gay_iterator_difference_type(const IteratorType&)
         {
-            typedef typename gay_iterator_traits<IteratorType>::difference_type difference;
+            typedef typename __gay_iterator_traits<IteratorType>::difference_type difference;
             return static_cast<difference*>(nullptr);
         }
     }
