@@ -6,8 +6,10 @@
 #include "algorithm.h"
 #include "memory.h"
 #include "iterator.h"
-#include "deque.h"
-#include "vector.h"
+#include "gay_deque.h"
+#include "gay_vector.h"
+#include "gay_stack.h"
+#include "gay_queue.h"
 #include "list.h"
 #include <iterator>
 #include <algorithm>
@@ -236,6 +238,25 @@ int main()
     cout << endl;
     m_deque.clear();
     gay_stl::gay_deque<int> m_deque2(100);
+
+    gay_stl::gay_stack<int> m_stack;
+    for(int i = 0; i < 10; ++i)
+        m_stack.push(i + 5);
+    for(int i = 0; i < 10; ++i)
+    {
+        cout << m_stack.top() << endl;
+        m_stack.pop();
+    }
+    cout << endl;
+    gay_stl::gay_queue<int> m_queue;
+    for(int i = 0; i < 10; ++i)
+        m_queue.push(i + 20);
+    for(int i = 0; i < 10; ++i)
+    {
+        cout << m_queue.front() << " " << m_queue.back() << endl;
+        m_queue.pop();
+    }
+    cout << endl;
 
     return 0;
 }

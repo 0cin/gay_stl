@@ -361,27 +361,13 @@ namespace uvwxyz
 
         public:
             gay_deque() :
-                map(nullptr), map_size(0), start(), finish()
-            {
+                map(nullptr), map_size(0), start(), finish() {
                 create_map_and_nodes(0);
             }
-
-            gay_deque(int n)
-            {
-                create_map_and_nodes(n);
-            }
-            gay_deque(size_type n)
-            {
-                create_map_and_nodes(n);
-            }
-            gay_deque(int n, const_reference x)
-            {
-                fill_initialize(n, x);
-            }
-            gay_deque(size_type n, const_reference x)
-            {
-                fill_initialize(n, x);
-            }
+            gay_deque(int n) { create_map_and_nodes(n); }
+            gay_deque(size_type n) { create_map_and_nodes(n); }
+            gay_deque(int n, const_reference x) { fill_initialize(n, x); }
+            gay_deque(size_type n, const_reference x) { fill_initialize(n, x); }
 
             iterator begin()    {  return start;  }
             iterator end()  {   return finish;  }
@@ -395,8 +381,13 @@ namespace uvwxyz
             reference operator[](size_type n)   {   return start[n];    }
             const_reference operator[](size_type n) const { return start[n];    }
             const_reference front() const { return *start;  }
-            const_reference back() const
-            {
+            const_reference back() const {
+                iterator tmp = finish;
+                --tmp;
+                return *tmp;
+            }
+            reference front() { return *start; }
+            reference back() {
                 iterator tmp = finish;
                 --tmp;
                 return *tmp;
